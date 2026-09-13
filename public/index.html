@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>墨锭试磨室 · 复测排程与盲测复核台</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>墨锭试磨室</h1>
+      <div class="meta">复测排程 · 盲测复核 · 试磨台账</div>
+    </div>
+    <div class="identity">
+      <label for="roleSelect">身份</label>
+      <select id="roleSelect">
+        <option value="manager">负责人</option>
+        <option value="tester">检测人</option>
+        <option value="reviewer">复核人</option>
+      </select>
+      <input id="nameInput" placeholder="姓名" list="nameList" autocomplete="off">
+      <datalist id="nameList"></datalist>
+      <button id="reload" type="button">刷新</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="bench" class="active" type="button">复测复核台</button>
+    <button data-tab="ledger" type="button">墨锭台账</button>
+  </nav>
+
+  <main>
+    <!-- ============ 复测复核台 ============ -->
+    <section id="tab-bench">
+      <div class="stats" id="batchStats"></div>
+
+      <div class="bench-grid">
+        <aside>
+          <div class="panel" id="queuePanel">
+            <h2>当前顺序</h2>
+            <div id="queueList"></div>
+          </div>
+          <div class="panel" id="createPanel"></div>
+        </aside>
+
+        <div class="batch-side">
+          <div class="toolbar">
+            <select id="batchStatusFilter"><option value="">全部状态</option></select>
+            <input id="batchSearch" placeholder="搜索批次 / 墨锭 / 检测人">
+          </div>
+          <div id="batchCards" class="cards"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 墨锭台账 ============ -->
+    <section id="tab-ledger" hidden>
+      <div class="ledger-grid">
+        <aside>
+          <form id="createForm" class="panel">
+            <h2>新增墨锭</h2>
+            <div id="fields"></div>
+            <label>初始状态</label>
+            <select name="status" id="itemStatus"></select>
+            <button type="submit">保存墨锭</button>
+          </form>
+          <form id="actionForm" class="panel">
+            <h2>创建试磨记录</h2>
+            <label>选择墨锭</label>
+            <select name="id" id="itemSelect"></select>
+            <div id="extraFields"></div>
+            <button type="submit">提交记录</button>
+          </form>
+        </aside>
+        <div>
+          <div class="stats" id="itemStats"></div>
+          <div class="toolbar">
+            <select id="statusFilter"><option value="">全部状态</option></select>
+            <input id="search" placeholder="搜索编号或关键词">
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
